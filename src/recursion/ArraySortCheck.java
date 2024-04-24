@@ -15,5 +15,8 @@ public class ArraySortCheck {
         if (length - 1 == currentPosition) return true;
         if (numbers[currentPosition] > numbers[currentPosition + 1]) return false;
         return checkSorted(numbers, length, currentPosition + 1);
+
+        // ** better approach
+        // return numbers[currentPosition] < numbers[currentPosition + 1] && checkSorted(numbers, length, currentPosition + 1);
     }
 }
