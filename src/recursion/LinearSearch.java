@@ -1,19 +1,31 @@
 package recursion;
 
+import java.util.ArrayList;
+
 public class LinearSearch {
     public static void main(String[] args) {
-        int[] numbers = {1,2,99,1000};
-        int keyIndex = findIndex(numbers, 10000);
-        System.out.println(keyIndex);
+        int[] numbers = {99,2,99,1000, 0, 9, 99, 80, 99};
+        ArrayList<Integer> indexList = findAllIndex(numbers, 919);
+        System.out.println(indexList);
     }
 
-    static int findIndex(int[] numbers, int key) {
-        return getIndex(numbers, numbers.length - 1, key);
+    static ArrayList<Integer> findAllIndex(int[] numbers, int key) {
+        ArrayList<Integer> indexList = new ArrayList<>();
+        getAllIndex(numbers, numbers.length - 1, key, indexList);
+        return indexList;
+    }
+    static void getAllIndex(int[] numbers, int currentPosition, int key, ArrayList<Integer> indexList) {
+        if (currentPosition < 0) return;
+        if (numbers[currentPosition] == key) indexList.addFirst(currentPosition);
+        getAllIndex(numbers, currentPosition -1, key, indexList);
     }
 
-    static int getIndex(int[] numbers, int currentPosition, int key) {
+    static int findLastIndex(int[] numbers, int key) {
+        return getLastIndex(numbers, numbers.length - 1, key);
+    }
+    static int getLastIndex(int[] numbers, int currentPosition, int key) {
         if (currentPosition < 0) return -1;
         if (numbers[currentPosition] == key) return currentPosition;
-        return getIndex(numbers, currentPosition - 1, key);
+        return getLastIndex(numbers, currentPosition - 1, key);
     }
 }
